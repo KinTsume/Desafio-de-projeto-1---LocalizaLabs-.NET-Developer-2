@@ -1,0 +1,2 @@
+C:\Users\Usuário do Windows\Documents\Estudos\obj\Debug\net6.0-windows\Estudos.csproj.AssemblyReference.cache
+C:\Users\Usuário do Windows\Documents\Estudos\obj\Debug\net6.0-windows\Estudos_MarkupCompile.cache

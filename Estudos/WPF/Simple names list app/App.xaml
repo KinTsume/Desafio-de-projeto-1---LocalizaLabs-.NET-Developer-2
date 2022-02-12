@@ -1,0 +1,10 @@
+﻿<Application x:Class="Estudos.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Estudos"
+             StartupUri="MainWindow.xaml">
+	         Title="Names" Height=""180 Widht="260">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>

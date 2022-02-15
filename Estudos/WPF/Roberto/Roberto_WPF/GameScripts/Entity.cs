@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Windows.Media;
+using System.Windows.Shapes;
+using static roberto.Camera;
 
 namespace roberto
 {
@@ -10,6 +13,7 @@ namespace roberto
         protected ShapeEnum Shape { get; set; }
         protected int ShapeWidth { get; set; }
         protected int ShapeHeight { get; set; }
+        protected Color EntityColor;
 
         public Guid GetId()
         {
@@ -50,9 +54,9 @@ namespace roberto
             ShapeHeight = dimensions[1];
         }
 
-        public string[,] GetShapeString()
+        public CameraPixel[,] GetShapeArray(double[] pixelDimension)
         {
-            var shapeString = new string[ShapeHeight, ShapeWidth];
+            var shapeArray = new CameraPixel[ShapeHeight, ShapeWidth];
 
             switch (Shape)
             {
@@ -61,7 +65,7 @@ namespace roberto
                     {
                         for (int j = 0; j < ShapeWidth; j++)
                         {
-                            shapeString[i, j] = "O";
+                            shapeArray[i, j] = new CameraPixel(pixelDimension[0], pixelDimension[1], EntityColor);
                         }
                     }
                     break;
@@ -77,9 +81,9 @@ namespace roberto
                             var testPoint = new float[2] { UpLeftVertex[0] + j, UpLeftVertex[1] + i };
 
                             if (GeometryCalculation.IsInsideElipse(pos, shapeDim, testPoint))
-                                shapeString[i, j] = "O";
+                                shapeArray[i, j] = new CameraPixel(pixelDimension[0], pixelDimension[1], EntityColor);
                             else
-                                shapeString[i, j] = " ";
+                                shapeArray[i, j] = null;
                         }
                     }
                     break;
@@ -99,9 +103,9 @@ namespace roberto
 
                             //Make the triangle direction editable
                             if (GeometryCalculation.IsInsideTriangle(pos, shapeDim, testPoint, 1))
-                                shapeString[i, j] = "O";
+                                shapeArray[i, j] = new CameraPixel(pixelDimension[0], pixelDimension[1], EntityColor);
                             else
-                                shapeString[i, j] = " ";
+                                shapeArray[i, j] = null;
                         }
                     }
                     break;
@@ -110,22 +114,7 @@ namespace roberto
                 default:
                     break;
             }
-            return shapeString;
-        }
-
-        public override string ToString()
-        {
-            var shapeString = GetShapeString();
-            var stringToReturn = "";
-            for (int i = 0; i < ShapeHeight; i++)
-            {
-                for (int j = 0; j < ShapeWidth; j++)
-                {
-                    stringToReturn += shapeString[i, j];
-                }
-                stringToReturn += "\n";
-            }
-            return stringToReturn;
+            return shapeArray;
         }
 
         public float[] GetVertices(int VerticeIndex)

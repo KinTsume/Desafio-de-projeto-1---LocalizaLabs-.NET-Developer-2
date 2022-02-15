@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Usuário do Windows\\Documents\\Estudos\\WPF\\SnakeWPF\\SnakeWPF\\SnakeWPF.csproj",
+      "projectUniqueName": "C:\\Users\\Usuário do Windows\\Documents\\Desafio-de-projeto-1---LocalizaLabs-.NET-Developer-2\\Estudos\\WPF\\SnakeWPF\\SnakeWPF\\SnakeWPF.csproj",
       "projectName": "SnakeWPF",
-      "projectPath": "C:\\Users\\Usuário do Windows\\Documents\\Estudos\\WPF\\SnakeWPF\\SnakeWPF\\SnakeWPF.csproj",
+      "projectPath": "C:\\Users\\Usuário do Windows\\Documents\\Desafio-de-projeto-1---LocalizaLabs-.NET-Developer-2\\Estudos\\WPF\\SnakeWPF\\SnakeWPF\\SnakeWPF.csproj",
       "packagesPath": "C:\\Users\\Usuário do Windows\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Usuário do Windows\\Documents\\Estudos\\WPF\\SnakeWPF\\SnakeWPF\\obj\\",
+      "outputPath": "C:\\Users\\Usuário do Windows\\Documents\\Desafio-de-projeto-1---LocalizaLabs-.NET-Developer-2\\Estudos\\WPF\\SnakeWPF\\SnakeWPF\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Usuário do Windows\\AppData\\Roaming\\NuGet\\NuGet.Config",

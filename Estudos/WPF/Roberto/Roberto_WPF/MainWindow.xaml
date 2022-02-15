@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Roberto_WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"> 
-    
-    <TextBlock x:Name="GameArea" Text="Hello World!" 
+        Title="MainWindow" Height="450" Width="800">
+
+    <!--<TextBlock x:Name="GameArea" Text="Hello World!" 
                Height="300" 
                Width="400"
                VerticalAlignment="Center"
-               TextAlignment="Center"/>
-    <!-- <Canvas Name="GameArea" ClipToBounds="True" Width="400" Height="400">
+               TextAlignment="Justify"/>-->
+    <Canvas Name="GameArea" ClipToBounds="True" Width="400" Height="400">
         
-    </Canvas> -->
+    </Canvas>
 </Window>

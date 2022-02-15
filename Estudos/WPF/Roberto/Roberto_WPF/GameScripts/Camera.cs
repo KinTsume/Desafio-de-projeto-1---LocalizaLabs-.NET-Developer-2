@@ -1,22 +1,29 @@
 ﻿using System.Collections.Generic;
 using System;
+using System.Windows.Shapes;
+using System.Windows.Media;
+using Roberto_WPF;
+
 namespace roberto
 {
     public class Camera : Entity
     {
-        private string[,] camera;
+        private CameraPixel[,] camera;
+        private double[] pixelDimension;
 
         public Camera()
         {
-            ShapeWidth = 20;
-            ShapeHeight = 20;
-            camera = new string[ShapeWidth, ShapeHeight];
+            ShapeWidth = 40;
+            ShapeHeight = 40;
+            camera = new CameraPixel[ShapeWidth, ShapeHeight];
+
+            pixelDimension = new double[2] { MainWindow.GetDimensions()[0] / ShapeWidth, MainWindow.GetDimensions()[1] / ShapeHeight };
 
             for (int i = 0; i < ShapeHeight; i++)
             {
                 for (int j = 0; j < ShapeWidth; j++)
                 {
-                    camera[i, j] = " ";
+                    camera[i, j] = new CameraPixel(pixelDimension[0], pixelDimension[1], Colors.White);
                 }
             }
 
@@ -24,14 +31,14 @@ namespace roberto
             PositionY = 0;
         }
 
-        public string GetPixels(Map mapObject)
+        public CameraPixel[,] GetPixels(Map mapObject)
         {
             //Empty the camera before rendering
             for (int i = 0; i < ShapeHeight; i++)
             {
                 for (int j = 0; j < ShapeWidth; j++)
                 {
-                    camera[i, j] = "A";
+                    camera[i, j] = camera[i, j] = new CameraPixel(pixelDimension[0], pixelDimension[1], Colors.White);
                 }
             }
 
@@ -59,50 +66,9 @@ namespace roberto
                 var itemVertex1 = item.GetVertices(0);
                 var cameraVertex1 = this.GetVertices(0);
 
-
-                /*
-                var itemVertex1 = item.GetVertices(0);
-                var itemVertex2 = item.GetVertices(1);
-                var itemVertex3 = item.GetVertices(2);
-                var itemVertex4 = item.GetVertices(3);
-                         
-                var cameraVertex1 = this.GetVertices(0);
-                var cameraVertex2 = this.GetVertices(1);
-                var cameraVertex3 = this.GetVertices(2);
-                var cameraVertex4 = this.GetVertices(3);
-
-                if ((itemVertex1[0] > cameraVertex1[0]) && (itemVertex1[1] < cameraVertex1[1]))
-                {
-                    if ((itemVertex1[0] < cameraVertex2[0]) && ((itemVertex1[1] > cameraVertex2[1])))
-                    {
-                        DrawItem = true;
-                    }
-                }
-                else if ((itemVertex2[0] > cameraVertex1[0]) && (itemVertex2[1] < cameraVertex1[1]))
-                {
-                    if ((itemVertex2[0] < cameraVertex2[0]) && ((itemVertex2[1] > cameraVertex2[1])))
-                    {
-                        DrawItem = true;
-                    }
-                }
-                else if ((itemVertex2[0] > cameraVertex1[0]) && (itemVertex2[1] < cameraVertex1[1]))
-                {
-                    if ((itemVertex2[0] < cameraVertex2[0]) && ((itemVertex2[1] > cameraVertex2[1])))
-                    {
-                        DrawItem = true;
-                    }
-                }
-                else if ((itemVertex2[0] > cameraVertex1[0]) && (itemVertex2[1] < cameraVertex1[1]))
-                {
-                    if ((itemVertex2[0] < cameraVertex2[0]) && ((itemVertex2[1] > cameraVertex2[1])))
-                    {
-                        DrawItem = true;
-                    }
-                }*/
-
                 if (DrawItem)
                 {
-                    var shape = item.GetShapeString();
+                    var shape = item.GetShapeArray(pixelDimension);
                     var indexToStartDrawing = new int[2] { (int)(itemVertex1[0] - cameraVertex1[0]), (int)(itemVertex1[1] - cameraVertex1[1]) };
                     indexToStartDrawing[1] *= -1;
 
@@ -136,7 +102,7 @@ namespace roberto
                             if (indexToStartDrawing[0] + j >= this.ShapeWidth)
                                 break;
 
-                            if (shape[i, j] == " ")
+                            if (shape[i, j] == null)
                                 continue;
 
                             camera[indexToStartDrawing[1] + i, indexToStartDrawing[0] + j] = shape[itemOffsetIndex[1] + i, itemOffsetIndex[0] + j];
@@ -146,18 +112,43 @@ namespace roberto
                 }
             }
 
-            //Transform the camera array in one string 
-            var CamString = new string("");
-            for (int i = 0; i < ShapeHeight; i++)
+            return camera;
+        }
+
+        public class CameraPixel
+        {
+            private double width;
+            private double height;
+            private Color _color;
+
+            public double[] Dimension 
             {
-                for (int j = 0; j < ShapeWidth; j++)
+                get 
                 {
-                    CamString += camera[i, j];
+                    var dimensionArray = new double[2] {width, height };
+                    return dimensionArray;
                 }
-                CamString += "\n";
             }
 
-            return CamString;
+            public Color color
+            {
+                get
+                {
+                    return _color;
+                }
+
+                set 
+                {
+                    _color = value;
+                } 
+            }
+
+            public CameraPixel(double pixelWidth, double pixelHeight, Color color)
+            {
+                width = pixelWidth;
+                height = pixelHeight;
+                _color = color;
+            }
         }
     }
 }

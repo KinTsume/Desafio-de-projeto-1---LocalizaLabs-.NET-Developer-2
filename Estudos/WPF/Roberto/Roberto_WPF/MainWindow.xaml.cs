@@ -27,11 +27,13 @@ namespace Roberto_WPF
         public static Camera CameraReference;
         public static Map MapReference;
         public static PlayerController PlayerControllerReference;
+        private static Canvas gameArea;
 
         public MainWindow()
         {
             InitializeComponent();
-            /*StackPanel myStackPanel = new StackPanel();
+            gameArea = this.GameArea;
+            StackPanel myStackPanel = new StackPanel();
             Rectangle rect = new Rectangle
             {
                 Width = 100,
@@ -39,9 +41,11 @@ namespace Roberto_WPF
                 Fill = Brushes.Aquamarine
             };
 
-            GameArea.Children.Add(rect);
-            Canvas.SetTop(rect, 300);
-            Canvas.SetLeft(rect, 300);*/
+            //GameArea.Children.Add(rect);
+            //Canvas.SetTop(rect, 300);
+            //Canvas.SetLeft(rect, 300);
+
+            rect.Fill = Brushes.Yellow;
 
             CameraReference = new Camera();
             MapReference = new Map();
@@ -51,34 +55,63 @@ namespace Roberto_WPF
             var shap = ShapeEnum.Triangle;
             var dim = new int[2] { 10, 10 };
 
-            var entity = new StaticEntity(pos, shap, dim);
+            var entity = new StaticEntity(pos, shap, dim, Colors.Red);
             MapReference.AddToList(entity);
 
             pos = new float[2] { -5, -5 };
             shap = ShapeEnum.Rectangle;
-            var entity2 = new StaticEntity(pos, shap, dim);
+            var entity2 = new StaticEntity(pos, shap, dim, Colors.Aquamarine);
             MapReference.AddToList(entity2);
 
             //cameraRender = new Timer(CallCameraRender, null, 0, 1000);
-            string Pixels = CameraReference.GetPixels(MapReference);
-            GameArea.Text = Pixels;
+            var Pixels = CameraReference.GetPixels(MapReference);
+            drawPixels(Pixels);
+            //meArea.Text = Pixels;
         }
 
-        public static void CallCameraRender(Object o)
+        public static void drawPixels(Camera.CameraPixel[,] pixelArray)
         {
-            string Pixels = CameraReference.GetPixels(MapReference);
-
-            TextBlock gameArea = new TextBlock();
-            gameArea.Text = Pixels;
-
-            /*var cameraPos = camera.GetPosition();
-            var cameraNewPos = new float[2] { cameraPos[0] + 1, cameraPos[1] };
-            camera.SetPosition(cameraNewPos);*/
-
-            float[] direction = PlayerControllerReference.GetDirection();
-            var cameraPos = CameraReference.GetPosition();
-            var cameraNewPos = new float[2] { cameraPos[0] + direction[0], cameraPos[1] + direction[1] };
-            CameraReference.SetPosition(cameraNewPos);
+            gameArea.Children.Clear();
+            var arrayDimension = CameraReference.GetShapeDimensions();
+            var dimension = pixelArray[0, 0].Dimension;
+            for (int i = 0; i < arrayDimension[1]; i++)
+            {
+                for (int j = 0; j < arrayDimension[0]; j++)
+                {
+                    
+                    Rectangle rect = new Rectangle { 
+                                                    Width = dimension[0],
+                                                    Height = dimension[1],
+                                                    Fill = new SolidColorBrush { Color = pixelArray[i, j].color}
+                                                    };
+                    gameArea.Children.Add(rect);
+                    Canvas.SetTop(rect, i * gameArea.Width / arrayDimension[0]);
+                    Canvas.SetLeft(rect, j * gameArea.Height / arrayDimension[1]);
+                }
+            }
         }
+
+        public static double[] GetDimensions()
+        {
+            var dimensions = new double[2] { gameArea.Width, gameArea.Height };
+            return dimensions;
+        }
+
+        //public static void CallCameraRender(Object o)
+        //{
+        //    string Pixels = CameraReference.GetPixels(MapReference);
+
+        //    TextBlock gameArea = new TextBlock();
+        //    gameArea.Text = Pixels;
+
+        //    /*var cameraPos = camera.GetPosition();
+        //    var cameraNewPos = new float[2] { cameraPos[0] + 1, cameraPos[1] };
+        //    camera.SetPosition(cameraNewPos);*/
+
+        //    float[] direction = PlayerControllerReference.GetDirection();
+        //    var cameraPos = CameraReference.GetPosition();
+        //    var cameraNewPos = new float[2] { cameraPos[0] + direction[0], cameraPos[1] + direction[1] };
+        //    CameraReference.SetPosition(cameraNewPos);
+        //}
     }
 }

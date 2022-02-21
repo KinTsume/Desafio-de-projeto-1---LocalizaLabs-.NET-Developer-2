@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Roberto_WPF.GameScripts;
 
 namespace Roberto_WPF
 {
@@ -64,19 +65,19 @@ namespace Roberto_WPF
             MapReference.AddToList(entity2);
 
             //cameraRender = new Timer(CallCameraRender, null, 0, 1000);
-            var Pixels = CameraReference.GetPixels(MapReference);
-            drawPixels(Pixels);
+            var pixels = CameraReference.GetPixels(MapReference);
+            drawPixels(pixels);
             //meArea.Text = Pixels;
         }
 
         public static void drawPixels(Camera.CameraPixel[,] pixelArray)
         {
             gameArea.Children.Clear();
-            var arrayDimension = CameraReference.GetShapeDimensions();
+            var arrayDimension = CameraReference.ShapeDimensions;
             var dimension = pixelArray[0, 0].Dimension;
-            for (int i = 0; i < arrayDimension[1]; i++)
+            for (int i = 0; i < arrayDimension.Y; i++)
             {
-                for (int j = 0; j < arrayDimension[0]; j++)
+                for (int j = 0; j < arrayDimension.X; j++)
                 {
                     
                     Rectangle rect = new Rectangle { 
@@ -85,8 +86,8 @@ namespace Roberto_WPF
                                                     Fill = new SolidColorBrush { Color = pixelArray[i, j].color}
                                                     };
                     gameArea.Children.Add(rect);
-                    Canvas.SetTop(rect, i * gameArea.Width / arrayDimension[0]);
-                    Canvas.SetLeft(rect, j * gameArea.Height / arrayDimension[1]);
+                    Canvas.SetTop(rect, i * gameArea.Width / arrayDimension.X);
+                    Canvas.SetLeft(rect, j * gameArea.Height / arrayDimension.Y);
                 }
             }
         }
@@ -97,21 +98,10 @@ namespace Roberto_WPF
             return dimensions;
         }
 
-        //public static void CallCameraRender(Object o)
-        //{
-        //    string Pixels = CameraReference.GetPixels(MapReference);
-
-        //    TextBlock gameArea = new TextBlock();
-        //    gameArea.Text = Pixels;
-
-        //    /*var cameraPos = camera.GetPosition();
-        //    var cameraNewPos = new float[2] { cameraPos[0] + 1, cameraPos[1] };
-        //    camera.SetPosition(cameraNewPos);*/
-
-        //    float[] direction = PlayerControllerReference.GetDirection();
-        //    var cameraPos = CameraReference.GetPosition();
-        //    var cameraNewPos = new float[2] { cameraPos[0] + direction[0], cameraPos[1] + direction[1] };
-        //    CameraReference.SetPosition(cameraNewPos);
-        //}
+        public static void CallCameraRender(Object o)
+        {
+            var Pixels = CameraReference.GetPixels(MapReference);
+            drawPixels(Pixels);
+        }
     }
 }

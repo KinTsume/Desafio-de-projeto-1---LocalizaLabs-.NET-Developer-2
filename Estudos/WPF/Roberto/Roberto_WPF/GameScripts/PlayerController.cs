@@ -1,14 +1,15 @@
-﻿using System;
+﻿using Roberto_WPF.GameScripts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace roberto
+namespace Roberto_WPF
 {
     public class PlayerController
     {
-        ConsoleKeyInfo keyinfo;
+        private DynamicEntity AttachedObject;
         private float[] direction { get; set; }
 
         public PlayerController()

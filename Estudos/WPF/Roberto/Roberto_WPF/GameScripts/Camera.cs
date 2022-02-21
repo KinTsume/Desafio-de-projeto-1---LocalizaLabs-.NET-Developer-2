@@ -2,14 +2,15 @@
 using System;
 using System.Windows.Shapes;
 using System.Windows.Media;
-using Roberto_WPF;
+using System.Numerics;
 
-namespace roberto
+namespace Roberto_WPF.GameScripts
 {
     public class Camera : Entity
     {
         private CameraPixel[,] camera;
         private double[] pixelDimension;
+        private DynamicEntity parent;
 
         public Camera()
         {
@@ -31,6 +32,25 @@ namespace roberto
             PositionY = 0;
         }
 
+        public Camera(DynamicEntity Parent)
+        {
+            ShapeWidth = 40;
+            ShapeHeight = 40;
+            camera = new CameraPixel[ShapeWidth, ShapeHeight];
+
+            pixelDimension = new double[2] { MainWindow.GetDimensions()[0] / ShapeWidth, MainWindow.GetDimensions()[1] / ShapeHeight };
+
+            for (int i = 0; i < ShapeHeight; i++)
+            {
+                for (int j = 0; j < ShapeWidth; j++)
+                {
+                    camera[i, j] = new CameraPixel(pixelDimension[0], pixelDimension[1], Colors.White);
+                }
+            }
+
+            parent = Parent;
+        }
+
         public CameraPixel[,] GetPixels(Map mapObject)
         {
             //Empty the camera before rendering
@@ -42,6 +62,10 @@ namespace roberto
                 }
             }
 
+            //Move the camera to the parent's position
+            if(parent != null)
+                Position = parent.Position;
+
             //render the static objects from the map
             var SEntityList = mapObject.GetEntityList();
 
@@ -49,15 +73,15 @@ namespace roberto
             {
                 bool DrawItem = false;
 
-                var itemCenter = item.GetPosition();
-                var itemDimension = item.GetShapeDimensions();
+                var itemCenter = item.Position;
+                var itemDimension = item.ShapeDimensions;
 
-                var cameraCenter = this.GetPosition();
-                var cameraDimension = this.GetShapeDimensions();
+                var cameraCenter = Position;
+                var cameraDimension = ShapeDimensions;
 
-                var centerDistance = new float[] {Math.Abs(itemCenter[0] - cameraCenter[0]), Math.Abs(itemCenter[1] - cameraCenter[1])};
+                var centerDistance = new float[] {Math.Abs(itemCenter.X - cameraCenter.X), Math.Abs(itemCenter.Y - cameraCenter.Y)};
 
-                if ((centerDistance[0] <= (itemDimension[0]/2 + cameraDimension[0]/2)) && (centerDistance[1] <= (itemDimension[1] / 2 + cameraDimension[1] / 2)))
+                if ((centerDistance[0] <= (itemDimension.X/2 + cameraDimension.X/2)) && (centerDistance[1] <= (itemDimension.Y / 2 + cameraDimension.Y / 2)))
                 {
                     DrawItem = true;
                 }
@@ -69,43 +93,43 @@ namespace roberto
                 if (DrawItem)
                 {
                     var shape = item.GetShapeArray(pixelDimension);
-                    var indexToStartDrawing = new int[2] { (int)(itemVertex1[0] - cameraVertex1[0]), (int)(itemVertex1[1] - cameraVertex1[1]) };
-                    indexToStartDrawing[1] *= -1;
+                    var indexToStartDrawing = new Vector2( (int)(itemVertex1.X - cameraVertex1.X), (int)(itemVertex1.Y - cameraVertex1.Y) );
+                    indexToStartDrawing.Y *= -1;
 
-                    var itemDimensions = item.GetShapeDimensions();
+                    var itemDimensions = item.ShapeDimensions;
 
-                    var itemOffsetIndex = new int[2] { 0, 0 };
+                    var itemOffsetIndex = new Vector2( 0, 0 );
 
                     //This if is to prevent the camera to try render objects out of the camera X view
-                    if (indexToStartDrawing[0] < 0)
+                    if (indexToStartDrawing.X < 0)
                     {
-                        itemDimensions[0] += indexToStartDrawing[0];
-                        itemOffsetIndex[0] -= indexToStartDrawing[0];
-                        indexToStartDrawing[0] = 0;
+                        itemDimensions.X += indexToStartDrawing.X;
+                        itemOffsetIndex.X -= indexToStartDrawing.X;
+                        indexToStartDrawing.X = 0;
                     }
 
                     //This if is to prevent the camera to try render objects out of the camera Y view
-                    if (indexToStartDrawing[1] < 0)
+                    if (indexToStartDrawing.Y < 0)
                     {
-                        itemDimensions[1] += indexToStartDrawing[1];
-                        itemOffsetIndex[1] -= indexToStartDrawing[1];
-                        indexToStartDrawing[1] = 0;
+                        itemDimensions.Y += indexToStartDrawing.Y;
+                        itemOffsetIndex.Y -= indexToStartDrawing.Y;
+                        indexToStartDrawing.Y = 0;
                     }
 
-                    for (int i = 0; i < itemDimensions[1]; i++)
+                    for (int i = 0; i < itemDimensions.Y; i++)
                     {
-                        if (indexToStartDrawing[1] + i >= this.ShapeHeight)
+                        if (indexToStartDrawing.Y + i >= this.ShapeHeight)
                             break;
 
-                        for (int j = 0; j < itemDimensions[0]; j++)
+                        for (int j = 0; j < itemDimensions.X; j++)
                         {
-                            if (indexToStartDrawing[0] + j >= this.ShapeWidth)
+                            if (indexToStartDrawing.X + j >= this.ShapeWidth)
                                 break;
 
                             if (shape[i, j] == null)
                                 continue;
 
-                            camera[indexToStartDrawing[1] + i, indexToStartDrawing[0] + j] = shape[itemOffsetIndex[1] + i, itemOffsetIndex[0] + j];
+                            camera[(int)indexToStartDrawing.Y + i, (int)indexToStartDrawing.X + j] = shape[(int)itemOffsetIndex.Y + i, (int)itemOffsetIndex.X + j];
                         }
                     }
 

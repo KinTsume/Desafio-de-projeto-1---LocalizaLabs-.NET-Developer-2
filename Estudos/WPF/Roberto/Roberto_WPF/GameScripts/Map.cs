@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace roberto
+namespace Roberto_WPF.GameScripts
 {
     public class Map
     {

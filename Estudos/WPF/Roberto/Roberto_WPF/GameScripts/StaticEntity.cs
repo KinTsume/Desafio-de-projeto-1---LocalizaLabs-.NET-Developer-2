@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Media;
 
-namespace roberto
+namespace Roberto_WPF.GameScripts
 {
     public class StaticEntity : Entity
     {
@@ -23,11 +23,5 @@ namespace roberto
             ShapeWidth = shapeDimensions[0];
             ShapeHeight = shapeDimensions[1];
         }
-
-        public ShapeEnum GetShape()
-        {
-            return Shape;
-        }
-
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,14 +18,9 @@ namespace Roberto_WPF
             direction = new float[2] { 0, 0 };
         }
 
-        public void ChangeDirection(float[] directionVector)
+        public void Translate(Vector2 direction)
         {
-            direction = directionVector;
-        }
-
-        public float[] GetDirection()
-        {
-            return direction;
+            AttachedObject.Position += direction;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Numerics;
 using System.Windows.Media;
 
 namespace Roberto_WPF.GameScripts
@@ -6,16 +7,12 @@ namespace Roberto_WPF.GameScripts
     public class StaticEntity : Entity
     {
 
-        public StaticEntity(float[] position, ShapeEnum shape, int[] shapeDimensions, Color Color)
+        public StaticEntity(Vector2 position, ShapeEnum shape, int[] shapeDimensions, Color Color)
         {
-            if ((position.Length != 2) || (shapeDimensions.Length != 2))
-            {
-                throw new ArgumentException("Array length must be 2");
-            }
             id = new Guid();
 
-            PositionX = position[0];
-            PositionY = position[1];
+            PositionX = position.X;
+            PositionY = position.Y;
 
             EntityColor = Color;
 

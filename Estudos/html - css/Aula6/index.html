@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Aula 1</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="960.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div>
+      <h1 class="titulo">金 Golden Dragon's lair 爪</h1>
+      <header>
+        Test header
+      </header>
+
+      <p>
+        <em>Este</em> é um <i>parágrafo</i> <b>teste</b>. Todos os <u>elementos</u> aqui presente estão sendo usados para <strong>testes</strong>.
+      </p>
+    </div>
+    <hr/>
+
+    <div id="listas" class="container_12">
+      <header>Essa seção foi posicionada usando grids</header>
+      <div id="peixeslo" class="grid_3">
+        <p>Alguns peixes conhecidos (Lista ordenada)</p>
+
+        <ol>
+          <li><a href="https://pt.wikipedia.org/wiki/Garoupa#:~:text=Garoupa%2C%20cherne%2C%20mero%2C%20marela%C3%A7o,fam%C3%ADlia%20Serranidae%2C%20ordem%20dos%20Perciformes.">Garoupa</a></li>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Grouper1.JPG/220px-Grouper1.JPG" class="ListImg"/>
+
+          <br/>
+          <br/>
+          <li><a href="https://pt.wikipedia.org/wiki/Centropomus">Robalo</a></li>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Centropomus.jpg/220px-Centropomus.jpg" class="ListImg"/>
+
+          <br/>
+          <br/>
+          <li><a href="https://pt.wikipedia.org/wiki/Olho-de-c%C3%A3o">Olho-de-cão</a></li>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Priacanthus_arenatus.jpg" class="ListImg"/>
+        </ol>
+      </div>
+      
+      <div class="grid_5">
+      <article>
+        <h1>Diferenças entre olho-de-cão e mariquita</h1>
+        <p>Muitas pessoas se confundem na hora de identificar uma mariquita. Devido a sua cor vermelha e olhos grandes se parece muito com um olho-de-cão, mas com um pouco de atenção é possível perceber facilmente a diferença como podemos ver abaixo.</p>
+        <p>
+          Quanto às escamas:
+          <ul>
+            <li>Mariquita: Grandes e bem visíveis.</li>
+            <li>Olho-de-cão: Pequenas, lembrando mais um peixe de couro.</li>
+          </ul>
+          <br>
+          <p>Quanto ao formato do corpo:</p>
+          <ul>
+            <li>Mariquita: Mais delgado e alongado, possui uma cauda bifurcada lembrando um V e é bem escorregadia.</li>
+            <li>Olho-de-cão: Mais achatado e "redondo" e possui uma cauda inteira Lembrando um triangulo.</li>
+          </ul>
+          <br>
+          <p>Aspectos gerais:</p>
+          <ul>
+            <li>Mariquita: Possui espinhos grandes e grossos na barbatana dorsal e algumas pontas naa guelra.</li>
+            <li>Olho-de-cão: Não possui grandes espinhos pelo corpo, ainda que tenha espinhos menores e sua cor pode mudar do vermelho forte até o branco.</li>
+          </ul>
+          
+        </p>
+      </article>
+    </div>
+
+      <div id="peixeslno" class="grid_3">
+        <p>Outros peixes conhecidos (Lista não ordenada)</p>
+
+        <ul>
+          <li><a href="https://pt.wikipedia.org/wiki/Eucinostomus_gula">Carapicu</a></li>
+          <img src="https://peixeepeixes.files.wordpress.com/2014/05/cfd47-carapicu.jpg" class="ListImg"/>
+
+          <br/>
+          <br/>
+          <li><a href="https://pt.wikipedia.org/wiki/Peixe-espada">Espada</a></li>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Atlantic_cutlassfish.jpg/375px-Atlantic_cutlassfish.jpg" class="ListImg"/>
+
+          <br/>
+          <br/>
+          <li><a href="https://pt.wikipedia.org/wiki/Sardinha">Sardinha</a></li>
+          <img src="https://lh5.googleusercontent.com/proxy/-aVXntMtLG1nnL1dw6zpPkhO2OWPUdoqc_YyEtu6HazNtItPk6ThbTgeQD59FS77ahwce-kLsAtDkgWSGOoFLCbr0YNqxrRx_9xZtZ-Bg72SJDBKVwibb69iNA=s0-d" class="ListImg"/>
+        </ul>
+      </div>
+    </div>
+
+    <hr/>
+    <div>
+      <div>
+        <table>
+          <tr>
+            <th>Tipos de veiculos</th>
+            <th>Tamanho relativo</th>
+          </tr>
+
+          <tr>
+            <td>Moto</td>
+            <td>Bem pequeno</td>
+          </tr>
+
+          <tr>
+            <td>Carro</td>
+            <td>Pequeno</td>
+          </tr>
+
+          <tr>
+            <td>Onibus</td>
+            <td>Grande</td>
+          </tr>
+
+          <tr>
+            <td>Van</td>
+            <td>Médio</td>
+          </tr>
+
+        </table>
+      </div>
+
+      <hr>
+      <div id="form" class="container_12">
+        <form>
+          <div class="grid_2 prefix_2">
+            <input type="hidden" name="oculto" value="confidencial">
+            Nome: <input type="text" name="nome"> <br><br>
+          </div>
+
+          <div class="grid_2">
+            Possui:<br> 
+            <input type="checkbox" name="prefer" value="carro">Carro<br>
+            <input type="checkbox" name="prefer" value="moto">Moto<br>
+            <input type="checkbox" name="prefer" value="onibus">Onibus<br>
+            <input type="checkbox" name="prefer" value="van">Van<br><br>
+          </div>
+
+          <div class="grid_2">  
+            Defina<br>
+            Carro: <input list="alturas" name="altura">
+            <datalist id="alturas">
+              <option value="Bem grande">
+              <option value="Pequeno">
+              <option value="médio">
+            </datalist><br>
+
+            Moto: <input list="alturas" name="altura">
+            <datalist id="alturas">
+              <option value="Bem grande">
+              <option value="Pequeno">
+              <option value="médio">
+            </datalist><br>
+
+            Onibus: <input list="alturas" name="altura">
+            <datalist id="alturas">
+              <option value="Bem grande">
+              <option value="Pequeno">
+              <option value="médio">
+            </datalist><br><br>
+          </div>
+          
+          <div class="grid_2 suffix_2">
+            Sexo:<br>
+            <input type="radio" name="sexo" value="F">F<br>
+            <input type="radio" name="sexo" value="M">M<br><br>
+          </div>
+
+          <div class="grid_12">
+          Comentário:<br>
+           <textarea rows="8" cols="70" required="required" placeholder="Digite o que acha sobre o site!"></textarea>
+           <br>
+
+          <input type="submit" value="enviar">
+          </div>
+          
+        </form>
+      </div>
+    </div>
+
+    <hr>
+    <div>
+      <iframe src="https://www.youtube.com/embed/TsTtqGAxvWk" width="420" height="315"></iframe>
+    </div>
+
+    <hr>
+    <p>Testando GIF... Aguarde confirmação mágica.</p>
+    <img src="ThumbsUp.gif" style="width: 500px;"/>
+    <p>bzzipp bzoppp... Atenção servidor como está indo a operação com gifs?</p>
+    <img src="https://media.tenor.com/images/7192debcb144575e47b8581b97551239/tenor.gif" />
+
+    <hr>
+    <div id="aula5">
+      <h1>Aula V</h1>
+      <p>Na aula 5 aprendemos os tipos de layouts e como usá-los. Nestes links estão alguns tipos de estrutura de layouts.</p><br><br>
+      <ul>
+        <li><a href="Layouts/LayoutLCF.html" target='_blank'>Layout liquido com float</a></li>
+        <br>
+        <li><a href="Layouts/LayoutPLCF.html" target='_blank'>Layout parcialmente liquido com float</a></li>
+        <br>
+        <li><a href="Layouts/LayoutCCF.html" target='_blank'>Layout congelado com float</a></li>
+      </ul>
+
+    </div>
+
+    <hr>
+    <div id="mediatest">
+      <h1>Servidor o ususário está em HD?</h1>
+      <div id="imagehd">
+        <img src="sim.gif" id="simgif" class="center" >
+        <img src="nao.gif" id="naogif" class="center">
+      </div>
+    </div>
+
+    <hr>
+    <footer>
+      Test footer
+    </footer>
+
+
+    <script src="script.js"></script>
+  </body>
+</html>

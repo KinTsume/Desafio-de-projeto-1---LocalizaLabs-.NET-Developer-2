@@ -1,0 +1,32 @@
+.a{
+  background-color: whitesmoke;
+}
+
+.b{
+  background-color: rosybrown;
+  float: left;
+  width: 25%;
+}
+
+.c{
+  background-color: gray;
+  float: left;
+  width: 40%
+}
+
+.d{
+  background-color: blanchedalmond;
+  float: left;
+  width: 25%;
+}
+
+.e{
+  background-color: green;
+  clear: left;
+}
+
+div{
+  border: 15px solid white;
+  margin: 0.5%;
+  text-align: center;
+}

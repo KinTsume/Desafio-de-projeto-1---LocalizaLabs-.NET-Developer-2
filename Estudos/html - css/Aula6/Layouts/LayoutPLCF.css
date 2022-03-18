@@ -1,0 +1,36 @@
+.a{
+  background-color: whitesmoke;
+}
+
+.b{
+  background-color: rosybrown;
+  float: left;
+  width: 230px;
+  margin-top: 0;
+}
+
+.c{
+  background-color: gray;
+  margin-left: 252px;
+  margin-right: 252px;
+}
+
+.d{
+  background-color: blanchedalmond;
+  float: right;
+  width: 230px;
+  margin-top: 0;
+}
+
+.e{
+  background-color: green;
+  clear: both;
+  text-align: center;
+}
+
+div{
+  border: 1px solid white;
+  margin: 5px;
+  padding: 5px;
+  text-align: center;
+}

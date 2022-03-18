@@ -1,0 +1,71 @@
+* {
+  text-align: center
+}
+
+.titulo{
+  background-image: url("goldragon.jpg");
+  background-position-y: -50px;
+  font-size: 70px;
+  color: #a89c47;
+  padding: 100px;
+}
+
+#listas{
+  /*o comando abaixo é necessário pra centralizar os marcadores junto com os textos*/
+  text-align: center;
+  list-style: inside;
+  background-image: url("oceanback.jpg");
+  background-size: 100%;
+  width: 100%;
+  color: white;
+}
+
+#listas h1, header{
+  color: white;
+}
+
+#listas p,#listas a,#listas li,#listas h2{
+  font-size: 20px;
+  color:white;
+}
+
+#peixeslo {
+  font-size: 20px;
+}
+
+#form *{
+  font-size: 20px;
+}
+
+#aula5{
+  list-style: inside;
+}
+
+#simgif, #naogif{
+  margin: auto;
+}
+
+
+@media screen and (min-width: 1023px){
+  #simgif {
+    display: block;
+  }
+
+  #naogif{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1023px){
+  #simgif {
+    display: none;
+  }
+
+  #naogif{
+    display: block;
+  }
+}
+
+.ListImg{
+    width: 100%;
+  }

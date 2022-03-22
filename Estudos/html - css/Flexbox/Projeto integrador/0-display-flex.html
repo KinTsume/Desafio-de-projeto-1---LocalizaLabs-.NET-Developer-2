@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundamentos - display  flex</title>
+    <style>
+        .container{
+            display: flex;
+        }
+
+        .topicContainer{
+            border: 2px solid black;
+            padding: 10px;
+            margin: 5px;
+            box-shadow: -5px -5px black;
+            color:;
+            background-image: linear-gradient(to bottom right, darkseagreen, gray);
+        }
+
+        .noflex{
+            padding: 10px;
+            border: 2px solid black;
+        }
+
+        .flex{
+            max-width: 300px;
+            padding: 10px;
+            border: 2px solid black;
+            display: flex;
+        }
+
+        .item{
+            background-color: aquamarine;
+            padding: 5px;
+            margin: 5px;
+            border-radius: 10px;
+        }
+
+        .row-reverse{
+            flex-direction: row-reverse;
+        }
+
+        .column{
+            flex-direction: column;
+        }
+
+        .column-reverse{
+            flex-direction: column-reverse;
+        }
+
+        .flex-wrap{
+            flex-wrap: wrap;
+        }
+
+        .flex-wrap-rev{
+            flex-wrap: wrap-reverse;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="topicContainer">
+            <h2>--Display: flex--</h2>
+            <h3>Elementos sem display: flex</h3>
+            <div class="noflex">
+                <div class="item">item 1</div>
+                <div class="item">item 2</div>
+                <div class="item">item 3</div>
+            </div>
+
+            <h3>Elementos com display: flex</h3>
+            <div class="flex">
+                <div class="item">item 1</div>
+                <div class="item">item 2</div>
+                <div class="item">item 3</div>
+            </div>
+        </div>
+
+        <div class="topicContainer">
+            <h2>--Flex direction--</h2>
+            <h3>row (padrão):</h3>
+            <div class="flex">
+                <div class="item">item 1</div>
+                <div class="item">item 2</div>
+                <div class="item">item 3</div>
+            </div>
+
+            <h3>row-reverse:</h3>
+            <div class="flex row-reverse">
+                <div class="item">item 1</div>
+                <div class="item">item 2</div>
+                <div class="item">item 3</div>
+            </div>
+
+            <h3>column:</h3>
+            <div class="flex column">
+                <div class="item">item 1</div>
+                <div class="item">item 2</div>
+                <div class="item">item 3</div>
+            </div>
+
+            <h3>column-reverse:</h3>
+            <div class="flex column-reverse">
+                <div class="item">item 1</div>
+                <div class="item">item 2</div>
+                <div class="item">item 3</div>
+            </div>
+        </div>
+
+        <div class="topicContainer">
+            <h2>--Flex wrap--</h2>
+            <h3>nowrap (padrão)</h3>
+            <div class="flex">
+                <div class="item">item 1</div>
+                <div class="item">item 2</div>
+                <div class="item">item 3</div>
+            </div>
+            <p>Itens podem vazar pra fora da div:</p>
+            <div class="flex">
+                <div class="item">item 1</div>
+                <div class="item">item 2</div>
+                <div class="item">item 3</div>
+                <div class="item">item 4</div>
+                <div class="item">item 5</div>
+                <div class="item">item 6</div>
+                <div class="item">item 7</div>
+            </div>
+
+            <h3>Wrap</h3>
+            <div class="flex flex-wrap">
+                <div class="item">item 1</div>
+                <div class="item">item 2</div>
+                <div class="item">item 3</div>
+                <div class="item">item 4</div>
+                <div class="item">item 5</div>
+                <div class="item">item 6</div>
+                <div class="item">item 7</div>
+            </div>
+
+            <h3>Wrap-reverse</h3>
+            <div class="flex flex-wrap-rev">
+                <div class="item">item 1</div>
+                <div class="item">item 2</div>
+                <div class="item">item 3</div>
+                <div class="item">item 4</div>
+                <div class="item">item 5</div>
+                <div class="item">item 6</div>
+                <div class="item">item 7</div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

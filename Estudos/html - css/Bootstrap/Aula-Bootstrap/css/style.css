@@ -1,0 +1,39 @@
+
+body{
+    font: 20px Arial, sans-serif;
+}
+
+.bg-wrapper{
+    background-image: url("../img/owbg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#quemSomos{
+    color: white;
+}
+
+#parceiros{
+    background-color: black;
+    color: white;
+}
+
+#tecnologia{
+    background-color: #053b3b;
+    color: white;
+}
+
+.pad{
+    padding-bottom: 50px;
+    padding-top: 10px;    
+}
+
+.bg-footer{
+    background-color: black;
+    color: white;
+}
+
+footer{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}

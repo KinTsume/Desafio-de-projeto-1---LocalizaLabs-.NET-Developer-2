@@ -29,7 +29,7 @@ namespace Roberto_WPF.GameScripts
             speed = entitySpeed;
         }
 
-        public void Move(Vector2 directionVector, float speed)
+        public void Move(Vector2 directionVector)
         {
             Position = directionVector * speed;
         }

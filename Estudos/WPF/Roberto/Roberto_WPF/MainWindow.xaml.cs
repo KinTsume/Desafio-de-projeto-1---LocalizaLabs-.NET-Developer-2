@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Roberto_WPF.GameScripts;
+using System.Numerics;
 
 namespace Roberto_WPF
 {
@@ -52,14 +53,14 @@ namespace Roberto_WPF
             MapReference = new Map();
             PlayerControllerReference = new PlayerController();
 
-            var pos = new float[2] { 5, 5 };
+            var pos = new Vector2( 5, 5 );
             var shap = ShapeEnum.Triangle;
             var dim = new int[2] { 10, 10 };
 
             var entity = new StaticEntity(pos, shap, dim, Colors.Red);
             MapReference.AddToList(entity);
 
-            pos = new float[2] { -5, -5 };
+            pos = new Vector2(-5, -5);
             shap = ShapeEnum.Rectangle;
             var entity2 = new StaticEntity(pos, shap, dim, Colors.Aquamarine);
             MapReference.AddToList(entity2);

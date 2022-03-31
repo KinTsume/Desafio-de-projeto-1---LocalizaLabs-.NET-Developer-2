@@ -1,9 +1,7 @@
-﻿using roberto;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Roberto_WPF.GameScripts;
 using System.Numerics;
+using System.Windows.Threading;
 
 namespace Roberto_WPF
 {
@@ -25,7 +24,7 @@ namespace Roberto_WPF
     public partial class MainWindow : Window
     {
 
-        public static Timer cameraRender;
+        public static DispatcherTimer gameTimer;
         public static Camera CameraReference;
         public static Map MapReference;
         public static PlayerController PlayerControllerReference;
@@ -35,6 +34,7 @@ namespace Roberto_WPF
         {
             InitializeComponent();
             gameArea = this.GameArea;
+            gameArea.Focus();
             StackPanel myStackPanel = new StackPanel();
             Rectangle rect = new Rectangle
             {
@@ -49,48 +49,36 @@ namespace Roberto_WPF
 
             rect.Fill = Brushes.Yellow;
 
-            CameraReference = new Camera();
+            CameraReference = new Camera(new Vector2((float)gameArea.Width, (float)gameArea.Height));
             MapReference = new Map();
             PlayerControllerReference = new PlayerController();
 
-            var pos = new Vector2( 5, 5 );
-            var shap = ShapeEnum.Triangle;
-            var dim = new int[2] { 10, 10 };
+            var pos = new Vector2( 50, 50 );
+            var shap = ShapeEnum.Rectangle;
+            var dim = new Vector2(50);
 
-            var entity = new StaticEntity(pos, shap, dim, Colors.Red);
-            MapReference.AddToList(entity);
+            var entity = new DynamicEntity(pos, shap, dim, Colors.Red, 10, 0/*MathF.PI/4*/);
+            MapReference.AddDynamic(entity);
+            PlayerControllerReference.AttachObject(entity);
+            CameraReference.parent = entity;
 
-            pos = new Vector2(-5, -5);
+            pos = new Vector2(0, 0);
             shap = ShapeEnum.Rectangle;
             var entity2 = new StaticEntity(pos, shap, dim, Colors.Aquamarine);
-            MapReference.AddToList(entity2);
+            MapReference.AddStatic(entity2);
 
-            //cameraRender = new Timer(CallCameraRender, null, 0, 1000);
-            var pixels = CameraReference.GetPixels(MapReference);
-            drawPixels(pixels);
+            gameTimer = new DispatcherTimer(DispatcherPriority.Normal, Application.Current.Dispatcher);
+            gameTimer.Interval = new TimeSpan(0, 0, 0, 0, 50);
+            gameTimer.Tick += GameTick;
+            gameTimer.Start();
             //meArea.Text = Pixels;
+            
         }
 
-        public static void drawPixels(Camera.CameraPixel[,] pixelArray)
+        public static void UpdateCameraView()
         {
             gameArea.Children.Clear();
-            var arrayDimension = CameraReference.ShapeDimensions;
-            var dimension = pixelArray[0, 0].Dimension;
-            for (int i = 0; i < arrayDimension.Y; i++)
-            {
-                for (int j = 0; j < arrayDimension.X; j++)
-                {
-                    
-                    Rectangle rect = new Rectangle { 
-                                                    Width = dimension[0],
-                                                    Height = dimension[1],
-                                                    Fill = new SolidColorBrush { Color = pixelArray[i, j].color}
-                                                    };
-                    gameArea.Children.Add(rect);
-                    Canvas.SetTop(rect, i * gameArea.Width / arrayDimension.X);
-                    Canvas.SetLeft(rect, j * gameArea.Height / arrayDimension.Y);
-                }
-            }
+            CameraReference.Render(MapReference, gameArea);
         }
 
         public static double[] GetDimensions()
@@ -99,10 +87,10 @@ namespace Roberto_WPF
             return dimensions;
         }
 
-        public static void CallCameraRender(Object o)
+        public static void GameTick(object sender, EventArgs e)
         {
-            var Pixels = CameraReference.GetPixels(MapReference);
-            drawPixels(Pixels);
+            UpdateCameraView();
+            ControllerManager.OnKeyDown();
         }
     }
 }

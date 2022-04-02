@@ -10,6 +10,8 @@
   ---------------------
     <p>WPF</p>
   ---------------------
+    <p>WPF</p>
+  ---------------------
 </div>
 
 ##
@@ -27,6 +29,13 @@
   <p align='left'>html/css: <br/><br/></p>
   <p>
     <i>My first site:</i> Este é um dos meus primeiros projetos estudando html/css. Foi feito como um modo de estudar a matéria de desenvolvimento web do meu curso de Análise e desenvolvimento de sistemas.
+  </p>
+  
+  <p>===============================================</p>
+  
+  <p align='left'>JavaScript: <br/><br/></p>
+  <p>
+    <i>Curso Coleções - DIO:</i> São apenas 2 scripts para estudar Maps e Sets em javaScript.
   </p>
   
   <p>===============================================</p>

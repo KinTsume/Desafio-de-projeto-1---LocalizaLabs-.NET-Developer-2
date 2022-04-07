@@ -44,10 +44,16 @@ namespace ow_eote___back_end.Controllers
             _planetService = planetService;
         }
 
-        [HttpGet("{idPlanet:guid}")]
-        public Planet GetPlanets([FromRoute] Guid id)
+        [HttpGet("{id}")]
+        public List<Planet> GetPlanets([FromRoute] Guid id)
         {
-            return _planetService.GetPlanet(id);
+            return _planetService.GetPlanets();
+        }
+
+        [HttpGet]
+        public Planet GetRandomPlanets()
+        {
+            return _planetService.GetRandomPlanet();
         }
 
         [HttpPost]
@@ -57,10 +63,18 @@ namespace ow_eote___back_end.Controllers
             return Ok();
         }
 
-        //[HttpPut("{idPlanet:guid}")]
-        //public ActionResult UpdatePlanet([FromRoute] Guid id, [FromBody] )
-        //{
+        [HttpPut("{idPlanet:guid}")]
+        public ActionResult UpdatePlanet([FromRoute] Guid idPlanet, [FromBody] Planet planet)
+        {
+            _planetService.UpdatePlanet(idPlanet, planet);
+            return Ok();
+        }
 
-        //}
+        [HttpDelete("{idPlanet:guid}")]
+        public ActionResult DeletePlanet([FromRoute] Guid idPlanet)
+        {
+            _planetService.DeletePlanet(idPlanet);
+            return Ok();
+        }
     }
 }

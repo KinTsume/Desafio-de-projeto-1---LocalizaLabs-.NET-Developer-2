@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using MongoDB.Bson.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace ow_eote___back_end
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
+            BsonClassMap.RegisterClassMap<Planet>();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

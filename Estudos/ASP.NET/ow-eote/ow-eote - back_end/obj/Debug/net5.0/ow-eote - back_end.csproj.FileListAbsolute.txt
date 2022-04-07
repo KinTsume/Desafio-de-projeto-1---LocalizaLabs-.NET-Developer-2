@@ -54,3 +54,19 @@ C:\Users\Usuário do Windows\Documents\Desafio-de-projeto-1---LocalizaLabs-.NET-
 C:\Users\Usuário do Windows\Documents\Desafio-de-projeto-1---LocalizaLabs-.NET-Developer-2\Estudos\ASP.NET\ow-eote\ow-eote - back_end\obj\Debug\net5.0\ow-eote - back_end.RazorTargetAssemblyInfo.cache
 C:\Users\Usuário do Windows\Documents\Desafio-de-projeto-1---LocalizaLabs-.NET-Developer-2\Estudos\ASP.NET\ow-eote\ow-eote - back_end\obj\Debug\net5.0\ow-eote - back_end.csproj.CopyComplete
 C:\Users\Usuário do Windows\Documents\Desafio-de-projeto-1---LocalizaLabs-.NET-Developer-2\Estudos\ASP.NET\ow-eote\ow-eote - back_end\obj\Debug\net5.0\ow-eote - back_end.genruntimeconfig.cache
+C:\Users\Usuário do Windows\Documents\Desafio-de-projeto-1---LocalizaLabs-.NET-Developer-2\Estudos\ASP.NET\ow-eote\ow-eote - back_end\bin\Debug\net5.0\DnsClient.dll
+C:\Users\Usuário do Windows\Documents\Desafio-de-projeto-1---LocalizaLabs-.NET-Developer-2\Estudos\ASP.NET\ow-eote\ow-eote - back_end\bin\Debug\net5.0\MongoDB.Bson.dll
+C:\Users\Usuário do Windows\Documents\Desafio-de-projeto-1---LocalizaLabs-.NET-Developer-2\Estudos\ASP.NET\ow-eote\ow-eote - back_end\bin\Debug\net5.0\MongoDB.Driver.dll
+C:\Users\Usuário do Windows\Documents\Desafio-de-projeto-1---LocalizaLabs-.NET-Developer-2\Estudos\ASP.NET\ow-eote\ow-eote - back_end\bin\Debug\net5.0\MongoDB.Driver.Core.dll
+C:\Users\Usuário do Windows\Documents\Desafio-de-projeto-1---LocalizaLabs-.NET-Developer-2\Estudos\ASP.NET\ow-eote\ow-eote - back_end\bin\Debug\net5.0\MongoDB.Libmongocrypt.dll
+C:\Users\Usuário do Windows\Documents\Desafio-de-projeto-1---LocalizaLabs-.NET-Developer-2\Estudos\ASP.NET\ow-eote\ow-eote - back_end\bin\Debug\net5.0\SharpCompress.dll
+C:\Users\Usuário do Windows\Documents\Desafio-de-projeto-1---LocalizaLabs-.NET-Developer-2\Estudos\ASP.NET\ow-eote\ow-eote - back_end\bin\Debug\net5.0\runtimes\linux\native\libsnappy64.so
+C:\Users\Usuário do Windows\Documents\Desafio-de-projeto-1---LocalizaLabs-.NET-Developer-2\Estudos\ASP.NET\ow-eote\ow-eote - back_end\bin\Debug\net5.0\runtimes\linux\native\libzstd.so
+C:\Users\Usuário do Windows\Documents\Desafio-de-projeto-1---LocalizaLabs-.NET-Developer-2\Estudos\ASP.NET\ow-eote\ow-eote - back_end\bin\Debug\net5.0\runtimes\osx\native\libsnappy64.dylib
+C:\Users\Usuário do Windows\Documents\Desafio-de-projeto-1---LocalizaLabs-.NET-Developer-2\Estudos\ASP.NET\ow-eote\ow-eote - back_end\bin\Debug\net5.0\runtimes\osx\native\libzstd.dylib
+C:\Users\Usuário do Windows\Documents\Desafio-de-projeto-1---LocalizaLabs-.NET-Developer-2\Estudos\ASP.NET\ow-eote\ow-eote - back_end\bin\Debug\net5.0\runtimes\win\native\libzstd.dll
+C:\Users\Usuário do Windows\Documents\Desafio-de-projeto-1---LocalizaLabs-.NET-Developer-2\Estudos\ASP.NET\ow-eote\ow-eote - back_end\bin\Debug\net5.0\runtimes\win\native\snappy32.dll
+C:\Users\Usuário do Windows\Documents\Desafio-de-projeto-1---LocalizaLabs-.NET-Developer-2\Estudos\ASP.NET\ow-eote\ow-eote - back_end\bin\Debug\net5.0\runtimes\win\native\snappy64.dll
+C:\Users\Usuário do Windows\Documents\Desafio-de-projeto-1---LocalizaLabs-.NET-Developer-2\Estudos\ASP.NET\ow-eote\ow-eote - back_end\bin\Debug\net5.0\runtimes\linux\native\libmongocrypt.so
+C:\Users\Usuário do Windows\Documents\Desafio-de-projeto-1---LocalizaLabs-.NET-Developer-2\Estudos\ASP.NET\ow-eote\ow-eote - back_end\bin\Debug\net5.0\runtimes\osx\native\libmongocrypt.dylib
+C:\Users\Usuário do Windows\Documents\Desafio-de-projeto-1---LocalizaLabs-.NET-Developer-2\Estudos\ASP.NET\ow-eote\ow-eote - back_end\bin\Debug\net5.0\runtimes\win\native\mongocrypt.dll

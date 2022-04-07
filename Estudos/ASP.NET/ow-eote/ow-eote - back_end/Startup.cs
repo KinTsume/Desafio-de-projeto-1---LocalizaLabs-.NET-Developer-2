@@ -35,6 +35,14 @@ namespace ow_eote___back_end
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ow_eote___back_end", Version = "v1" });
             });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder => builder
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()                
+                    .AllowAnyHeader());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +54,8 @@ namespace ow_eote___back_end
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ow_eote___back_end v1"));
             }
+
+            app.UseCors("CorsPolicy");
 
             app.UseHttpsRedirection();
 

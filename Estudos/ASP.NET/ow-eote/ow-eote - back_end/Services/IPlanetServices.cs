@@ -7,8 +7,10 @@ namespace ow_eote___back_end.Services
 {
     public interface IPlanetServices : IDisposable
     {
-        Planet GetPlanet(Guid Id);
+        List<Planet> GetPlanets();
+        Planet GetRandomPlanet();
         void AddPlanet(Planet planet);
-        void UpdatePlanet(Guid Id);
+        void UpdatePlanet(Guid id, Planet planet);
+        void DeletePlanet(Guid id);
     }
 }

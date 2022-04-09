@@ -1,11 +1,11 @@
 import './App.css';
-import { PlanetInfo } from './planetInfo/planetInfo';
+import { Start } from './start/start';
 
 function App() {
   return (
     <div className="App" id='app'>
-      <main style={{backgroundImage: "url(/img/background.webp)", backgroundSize: 'cover', padding: '2% 0 10% 0'}}>
-        <PlanetInfo />
+      <main style={{backgroundImage: "url(/img/spaceBackground.jpg)", backgroundSize: 'cover', padding: '0'}}>
+        <Start firstAccess={false} language='english'/>
       </main>
     </div>
   );

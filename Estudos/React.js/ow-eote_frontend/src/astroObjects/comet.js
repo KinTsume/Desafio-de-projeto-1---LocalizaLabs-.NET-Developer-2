@@ -9,7 +9,8 @@ export class Comet extends React.Component{
         this.Move = this.Move.bind(this);
         this.angle = 0;
         this.distance = 0;
-        this.precessionAngle = 0;        
+        this.precessionAngle = 0;   
+        this.size = 0;     
         
     }
 
@@ -50,6 +51,11 @@ export class Comet extends React.Component{
 
         const imageSize = [this.size / 2, this.size / 2];
 
+        //The comet follows a ellipse so: x=r*cos(alpha)*a and y=r*cos(alpha)*b
+        //in this case: a = 1 and b = 1/2
+        //The precession is calculated rotating the ellipse by beta angles
+        // ->> x'= x * cos(beta) + y * cos(beta + 90°)
+        // ->> y'= x * sin(beta) + y * sin(beta + 90°)
         const precessionCos = Math.cos(this.precessionAngle);
         const precessionCos2 = Math.cos(this.precessionAngle + Math.PI/2);
         const precessionSin = Math.sin(this.precessionAngle);
@@ -62,7 +68,11 @@ export class Comet extends React.Component{
                                 this.state.relativePos[1]*precessionSin2
                                 ];
         
+        //The distance the center of the ellipse is far from the sun
         const centerRadius = .2;
+
+        //The center of the ellipse
+        //the ellipse rotation axis is not on its center so it needs to be moved too 
         const center = [ centerRadius * Math.cos(this.precessionAngle + Math.PI), centerRadius * Math.sin(this.precessionAngle + Math.PI)];
 
         //calcPosition is the position of the top-left vertex of this image

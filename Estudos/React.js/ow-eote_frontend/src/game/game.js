@@ -21,7 +21,7 @@ export class Game extends React.Component{
                     <source src='/audio/Outer Wilds.mp3' type='audio/mpeg'></source>
                 </audio> 
  
-                <PrimaryAstroObject imgSrc='/img/Sun.png' pos={[.5, .5]} orbitParentId='none'/>
+                <PrimaryAstroObject imgSrc='/img/PlanetIcons/Sun.png' pos={[.5, .5]} orbitParentId='none'/>
 
             </div>
         );

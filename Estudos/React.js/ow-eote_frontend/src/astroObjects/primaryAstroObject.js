@@ -48,12 +48,12 @@ export class PrimaryAstroObject extends React.Component{
             <div style={{width: (screenSize[0] + 'px'), height: (screenSize[1] + 'px'), position: 'relative', margin: 'auto'}}>
                 <button onClick={this.toggleRealSizeView}>Toggle planet real size view (don't count moons or The Interloper (comet))</button>
                 <img src={this.props.imgSrc} style={{position: 'absolute', left: (position[0] * 100 +'%'), top: (position[1] * 100 + '%') ,justifySelf: 'center', width: '10%'}}></img>
-                <SecondaryAstroObject moonIndex={[0, quantumMoonParent[0]]} imgSrc='/img/HourglassTwins.png' parentPos={this.props.pos} relativeDistance={0.18} speedMultiplier={1} useRealSize={this.state.realSizeView} sizeMultiplier={.176}/>
-                <SecondaryAstroObject moonIndex={[1, quantumMoonParent[1]]} imgSrc='/img/TimberHearth.png' parentPos={this.props.pos} relativeDistance={0.33} speedMultiplier={.72} useRealSize={this.state.realSizeView} sizeMultiplier={.138}/>
-                <SecondaryAstroObject moonIndex={[2, quantumMoonParent[2]]} imgSrc='/img/BrittleHollow.png' parentPos={this.props.pos} relativeDistance={0.45} speedMultiplier={.61} useRealSize={this.state.realSizeView} sizeMultiplier={.3}/>
-                <SecondaryAstroObject moonIndex={[0, quantumMoonParent[3]]} imgSrc='/img/GiantsDeep.png' parentPos={this.props.pos} relativeDistance={0.63} speedMultiplier={.52} useRealSize={this.state.realSizeView} sizeMultiplier={1}/>
-                <SecondaryAstroObject moonIndex={[0, quantumMoonParent[4]]} imgSrc='/img/DarkBramble.png' parentPos={this.props.pos} relativeDistance={0.75} speedMultiplier={.47} useRealSize={this.state.realSizeView} sizeMultiplier={.8}/>
-                <Comet imgSrc='/img/TheInterloper.png' parentPos={this.props.pos} relativeDistance={0.5} speedMultiplier={1} useRealSize={this.state.realSizeView} sizeMultiplier={1}/>
+                <SecondaryAstroObject moonIndex={[0, quantumMoonParent[0]]} imgSrc='/img/PlanetIcons/HourglassTwins.png' parentPos={this.props.pos} relativeDistance={0.18} speedMultiplier={1} useRealSize={this.state.realSizeView} sizeMultiplier={.176}/>
+                <SecondaryAstroObject moonIndex={[1, quantumMoonParent[1]]} imgSrc='/img/PlanetIcons/TimberHearth.png' parentPos={this.props.pos} relativeDistance={0.33} speedMultiplier={.72} useRealSize={this.state.realSizeView} sizeMultiplier={.138}/>
+                <SecondaryAstroObject moonIndex={[2, quantumMoonParent[2]]} imgSrc='/img/PlanetIcons/BrittleHollow.png' parentPos={this.props.pos} relativeDistance={0.45} speedMultiplier={.61} useRealSize={this.state.realSizeView} sizeMultiplier={.3}/>
+                <SecondaryAstroObject moonIndex={[0, quantumMoonParent[3]]} imgSrc='/img/PlanetIcons/GiantsDeep.png' parentPos={this.props.pos} relativeDistance={0.63} speedMultiplier={.52} useRealSize={this.state.realSizeView} sizeMultiplier={1}/>
+                <SecondaryAstroObject moonIndex={[0, quantumMoonParent[4]]} imgSrc='/img/PlanetIcons/DarkBramble.png' parentPos={this.props.pos} relativeDistance={0.75} speedMultiplier={.47} useRealSize={this.state.realSizeView} sizeMultiplier={.8}/>
+                <Comet imgSrc='/img/PlanetIcons/TheInterloper.png' parentPos={this.props.pos} relativeDistance={0.5} speedMultiplier={1} useRealSize={this.state.realSizeView} sizeMultiplier={1}/>
             </div> 
         );
     }

@@ -13,7 +13,6 @@ export class Start extends React.Component{
     }
 
     setLanguage(lang){
-        console.log('Setting state...');
         this.setState({
             language: lang, 
             firstAccess: false

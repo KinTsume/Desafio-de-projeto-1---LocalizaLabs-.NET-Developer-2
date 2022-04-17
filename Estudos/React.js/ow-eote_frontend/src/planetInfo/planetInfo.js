@@ -9,14 +9,22 @@ export class PlanetInfo extends React.Component{
         super(props);
         this.state = {
             gameStarted: false,
-            onQuantumMoon: false
+            onQuantumMoon: false,
+            myJson: []
         };
         this.toggleGame = this.toggleGame.bind(this);
     }
 
     toggleGame(){
         if(this.state.gameStarted){
-            this.setState({gameStarted: false});            
+            this.setState({gameStarted: false});     
+            fetch('https://localhost:44342/Planet')
+            .then(res => res.json())
+            .then(res => {
+                this.setState({
+                    myJson: res
+                });                
+            });       
         } else {
             this.setState({gameStarted: true});
         }
@@ -25,44 +33,51 @@ export class PlanetInfo extends React.Component{
         });*/
     }
 
+    componentDidMount(){
+        fetch('https://localhost:44342/Planet')
+        .then(res => res.json())
+            .then(res => {
+                this.setState({
+                    myJson: res
+                });                
+            });
+    }
+
     render(){
-
         var gameStarted = '';
-
+        console.log(this.state.myJson.imageSrc);
         if(!this.state.gameStarted){
             gameStarted = (
-                <div>
+                <div>  
                     <button onClick={this.toggleGame} style={{position:'absolute', right: '10px' , backgroundImage: 'url(/img/EyeUniverse-black.webp)', backgroundSize: 'cover', borderRadius: '15px', width: '30px', height: '30px'}}></button>
                     <div style={{display: 'flex', justifyContent:'space-around', alignItems: 'flex-end', paddingTop: '5%'}}>
                         <div style={{width: '45%', backgroundColor: 'yellow', margin: '0', borderRadius: '1%'}}>
-                            <p style={{textAlign: 'center', fontSize: '35px', margin: '0'}}>Dark Bramble</p>
-                            <img src='/img/Dark_Bramble.webp' style={{width: '98%'}}></img>
+                            <p style={{textAlign: 'center', fontSize: '35px', margin: '0'}}>{this.state.myJson.name}</p>
+                            <img src={'/img/'+this.state.myJson.imageSrc} style={{width: '98%'}}></img>
                         </div>
                         <div id='properties' style={{width: '45%', height: '', margin:'1%', borderRadius: '0px'}}>
 
-                            <Property title='Type' propertyValue='Planetary Remnant (originally ice planet)'/>
+                            <Property title='Type' propertyValue={this.state.myJson.type}/>
 
-                            <Property title='Gravity' propertyValue='0g (Interior) 0.4 (Exterior)'/>
+                            <Property title='Gravity' propertyValue={this.state.myJson.gravity}/>
 
-                            <Property title='Inhabitants' propertyValue='Feldspar, Anglerfish, Jellyfish (originally)'/>
+                            <Property title='Inhabitants' propertyValue={this.state.myJson.inhabitants}/>
 
-                            <Property title='Location' propertyValue='5th planet'/>
+                            <Property title='Location' propertyValue={this.state.myJson.location}/>
                         </div> 
                     </div>
                     <div className='content' style={{textAlign: 'center', margin: '2% 1% 0% 1%', paddingBottom: '5%' ,borderRadius: '10px'}}>
                         
                         <p id='description' style={{fontSize: '150%', width: '75%' ,margin:'auto', borderRadius: '10px', color: 'white'}}>
-                            Dark Bramble is a large, confusing network of twisted vines and teleportation 
-                            passages, the imploded remnants of a fifth planet that has long since been infected 
-                            and overrun by space-bending plant growth. It is the only planet to feature hostile 
-                            wildlife in the form of Anglerfish.
+                            {this.state.myJson.about}
                         </p>                                       
                     </div>
                 </div>
             );
 
-        } else if(!this.state.onQuantumMoon){
+        } else if(this.state.myJson.name !== 'Quantum Moon'){
             gameStarted = <Game toggleGame={this.toggleGame}/>;
+            console.log(this.state.myJson.name);
         } else{
             gameStarted = <Eye toggleGame={this.toggleGame}/>;
         }

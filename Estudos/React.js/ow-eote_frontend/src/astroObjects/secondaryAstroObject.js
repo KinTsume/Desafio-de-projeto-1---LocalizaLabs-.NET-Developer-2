@@ -10,7 +10,7 @@ export class SecondaryAstroObject extends React.Component{
         this.Move = this.Move.bind(this);
         this.angle = 0;
         this.distance = 0;
-        
+        this.size = 0;      
         
     }
 
@@ -58,10 +58,10 @@ export class SecondaryAstroObject extends React.Component{
         var moonSrc = ''
         switch(this.props.moonIndex[0]){
             case 1:
-                moonSrc = '/img/AttleRock.png';
+                moonSrc = '/img/PlanetIcons/AttleRock.png';
                 break;
             case 2:
-                moonSrc = '/img/HollowsLantern.png';
+                moonSrc = '/img/PlanetIcons/HollowsLantern.png';
                 break;
             default:
         }
@@ -73,7 +73,7 @@ export class SecondaryAstroObject extends React.Component{
                 toRender = (
                     <div>
                          <img src={this.props.imgSrc} style={{width: (this.size * 100+'%'), position: 'absolute', left: (calcPosition[0] * 100+'%'), bottom: (calcPosition[1] * 100+'%')}}></img>
-                         <TerciaryAstroObject imgSrc='/img/QuantumMoon.png' relativeDistance={.15} parentPos={centerPosition} speedMultiplier={1.2}/>
+                         <TerciaryAstroObject imgSrc='/img/PlanetIcons/QuantumMoon.png' relativeDistance={.15} parentPos={centerPosition} speedMultiplier={1.2}/>
                          <TerciaryAstroObject imgSrc={moonSrc} relativeDistance={.1} parentPos={centerPosition} speedMultiplier={1}/>
                     </div>
                 );
@@ -90,7 +90,7 @@ export class SecondaryAstroObject extends React.Component{
             toRender = (
                 <div>
                      <img src={this.props.imgSrc} style={{width: (this.size * 100+'%'), position: 'absolute', left: (calcPosition[0] * 100+'%'), bottom: (calcPosition[1] * 100+'%')}}></img>
-                     <TerciaryAstroObject imgSrc='/img/QuantumMoon.png' relativeDistance={.1} parentPos={centerPosition} speedMultiplier={2}/>
+                     <TerciaryAstroObject imgSrc='/img/PlanetIcons/QuantumMoon.png' relativeDistance={.1} parentPos={centerPosition} speedMultiplier={2}/>
                 </div>
             );
         } else {

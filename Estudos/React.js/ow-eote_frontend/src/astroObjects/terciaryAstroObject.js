@@ -9,6 +9,7 @@ export class TerciaryAstroObject extends React.Component{
         this.Move = this.Move.bind(this);
         this.angle = 0;
         this.distance = 0;
+        this.size = 0;
     }
 
     Move(){

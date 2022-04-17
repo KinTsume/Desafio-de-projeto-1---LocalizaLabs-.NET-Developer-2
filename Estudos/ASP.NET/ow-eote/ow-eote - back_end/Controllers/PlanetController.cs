@@ -44,10 +44,10 @@ namespace ow_eote___back_end.Controllers
             _planetService = planetService;
         }
 
-        [HttpGet("{id}")]
-        public List<Planet> GetPlanets([FromRoute] Guid id)
+        [HttpGet("{pos}")]
+        public Planet GetPlanets([FromRoute] int pos)
         {
-            return _planetService.GetPlanets();
+            return _planetService.GetPlanet(pos);
         }
 
         [HttpGet]

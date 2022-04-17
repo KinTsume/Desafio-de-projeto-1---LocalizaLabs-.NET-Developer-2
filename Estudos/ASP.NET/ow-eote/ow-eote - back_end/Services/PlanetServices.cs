@@ -20,14 +20,14 @@ namespace ow_eote___back_end.Services
             PlanetsCollection = database.GetCollection<Planet>("Planets");
         }
 
-        public List<Planet> GetPlanets()
+        public Planet GetPlanet(int pos)
         {            
-            return PlanetsCollection.Find(item => true).ToList<Planet>();
+            return PlanetsCollection.Find(item => item.Position == pos).ToList<Planet>()[0];
         }
 
         public Planet GetRandomPlanet()
         {
-            var collection = GetPlanets();
+            var collection = PlanetsCollection.Find(item => true).ToList<Planet>();
 
             var rdm = new Random();
             var index = rdm.Next(collection.Count - 1);

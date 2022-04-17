@@ -53,7 +53,7 @@ namespace Roberto_WPF
             MapReference = new Map();
             PlayerControllerReference = new PlayerController();
 
-            var pos = new Vector2( 50, 50 );
+            var pos = new Vector2( 0, 0 );
             var shap = ShapeEnum.Rectangle;
             var dim = new Vector2(50);
 

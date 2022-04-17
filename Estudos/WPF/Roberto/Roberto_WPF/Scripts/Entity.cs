@@ -85,23 +85,6 @@ namespace Roberto_WPF.GameScripts
                         _vertices[i] = (new Point(radius * MathF.Cos(angles[i] + Rotation), radius * MathF.Sin(angles[i] + Rotation)));
                     }
 
-                    ////Top-left
-                    //angles[0] = Math.PI - angle;
-                    //Vertices[0] = new Vector2(Position.X + (float) (radius * Math.Cos(angles[0] + Rotation)), Position.Y + (float) (radius * Math.Sin(angles[0] + Rotation)));
-
-                    ////Top-right
-                    //angles[1] = angle;
-                    //Vertices[1] = new Vector2(Position.X + (float)(radius * Math.Cos(angles[1] + Rotation)), Position.Y + (float)(radius * Math.Sin(angles[1] + Rotation)));
-
-                    ////Bottom-left
-                    ////It's added pi because the cos() function cannot distinguish if the vertex is above or below the center Y
-                    //angles[2] = angle + Math.PI; 
-                    //Vertices[2] = new Vector2(Position.X + (float)(radius * Math.Sin(angles[2] + Rotation)), Position.Y + (float)(radius * Math.Sin(angles[2] + Rotation)));
-
-                    ////Bottom-right
-                    ////It can be just -angle but I decided to just allow positive angles for simplification
-                    //angles[3] = 2*Math.PI - angle;
-                    //Vertices[3] = new Vector2(Position.X + (float)(radius * Math.Sin(angles[3] + Rotation)), Position.Y + (float)(radius * Math.Sin(angles[3] + Rotation)));
                     break;
 
                 case ShapeEnum.Triangle:

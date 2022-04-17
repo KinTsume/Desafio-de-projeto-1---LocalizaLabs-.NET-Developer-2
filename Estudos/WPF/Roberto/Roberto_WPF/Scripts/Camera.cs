@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System;
 using System.Numerics;
-using System.Drawing;
 using System.Windows.Controls;
 using System.Windows.Shapes;
 using System.Windows.Media;
+using System.Windows;
 
 namespace Roberto_WPF.GameScripts
 {
@@ -30,7 +30,12 @@ namespace Roberto_WPF.GameScripts
 
         public void Render(Map map, Canvas c)
         {
-            this.Position = parent.Position;
+            
+            if (parent != null)
+            {
+                this.Position = parent.Position;
+            }
+            
             renderStaticList(map, c);
             renderDynamicList(map, c);
         }
@@ -47,12 +52,21 @@ namespace Roberto_WPF.GameScripts
 
                 if (distance.X < (item.ShapeDimensions.X + this.ShapeDimensions.X) && distance.Y < (item.ShapeDimensions.Y + this.ShapeDimensions.Y))
                 {
+                    //calculate the vertices relative to the camera position
+                    PointCollection relativeVertices = new PointCollection();
+
+                    foreach (Point point in item.Vertices)
+                    {
+                        var pos = new Point(point.X - this.Position.X + this.ShapeDimensions.X / 2, point.Y  - this.Position.Y + this.ShapeDimensions.Y / 2);
+                        relativeVertices.Add(pos);
+                    }
+
                     switch (item.Shape)
                     {
                         case ShapeEnum.Rectangle:
                             Polygon poly = new Polygon
                             {
-                                Points = item.Vertices,
+                                Points = relativeVertices,
                                 Fill = new SolidColorBrush(item.EntityColor),
                                 FillRule = FillRule.Nonzero
                             };
@@ -90,13 +104,21 @@ namespace Roberto_WPF.GameScripts
 
                 if (distance.X < (item.ShapeDimensions.X + this.ShapeDimensions.X) && distance.Y < (item.ShapeDimensions.Y + this.ShapeDimensions.Y))
                 {
+                    //calculate the vertices relative to the camera position
+                    PointCollection relativeVertices = new PointCollection();
+
+                    foreach (Point point in item.Vertices)
+                    {
+                        var pos = new Point(point.X - this.Position.X + this.ShapeDimensions.X / 2, point.Y - this.Position.Y + this.ShapeDimensions.Y / 2);
+                        relativeVertices.Add(pos);
+                    }
 
                     switch (item.Shape)
                     {
                         case ShapeEnum.Rectangle:
                             Polygon poly = new Polygon
                             {
-                                Points = item.Vertices,
+                                Points = relativeVertices,
                                 Fill = new SolidColorBrush(item.EntityColor)
                             };
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Roberto_WPF.Scripts.Collision;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -30,7 +31,7 @@ namespace Roberto_WPF.GameScripts
             Vertices = new PointCollection();
 
             Rotation = rot;
-            SetShape(shape);
+            Vertices = GetRotatedVertices(shape);
         }
 
         /// <summary>
@@ -58,11 +59,11 @@ namespace Roberto_WPF.GameScripts
             var rotateValue = 0;
             if (dir.X < 0)
             {
-                rotateValue = -1;
+                rotateValue = 1;
             }
             else if (dir.X > 0)
             {
-                rotateValue = 1;
+                rotateValue = -1;
             }
 
             MoveForwardAndBack(multiplier);
@@ -81,7 +82,46 @@ namespace Roberto_WPF.GameScripts
         public void Rotate(float rot)
         {
             Rotation += rot;
-            SetShape(Shape);
+        }
+
+        public void onCollision()
+        {
+            this.EntityColor = Colors.Black;
+            
+        }
+
+        public void checkCollision(Map map)
+        {
+            foreach (StaticEntity se in map.GetStaticList())
+            {
+                var distance = new Vector2(Math.Abs(se.Position.X - this.Position.X), Math.Abs(se.Position.Y - this.Position.Y));
+
+                if (distance.X < (se.ShapeDimensions.X + this.ShapeDimensions.X) && distance.Y < (se.ShapeDimensions.Y + this.ShapeDimensions.Y))
+                {
+                    if(CollisionDetector.checkCollisionBetween(se, this) != null){
+                        onCollision();
+                        return;
+                    }
+                }
+            }
+
+            this.EntityColor = Colors.Red;
+
+            foreach (DynamicEntity de in map.GetDynamicList())
+            {
+                if (de != this) {
+                    var distance = new Vector2(Math.Abs(de.Position.X - this.Position.X), Math.Abs(de.Position.Y - this.Position.Y));
+
+                    if (distance.X < (de.ShapeDimensions.X + this.ShapeDimensions.X) && distance.Y < (de.ShapeDimensions.Y + this.ShapeDimensions.Y))
+                    {
+                        if (CollisionDetector.checkCollisionBetween(de, this) != null)
+                        {
+                            onCollision();
+                            
+                        }
+                    }
+                }
+            }
         }
 
     }

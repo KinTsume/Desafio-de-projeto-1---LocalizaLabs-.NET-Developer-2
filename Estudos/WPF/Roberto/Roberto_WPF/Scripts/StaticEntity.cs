@@ -13,7 +13,7 @@ namespace Roberto_WPF.GameScripts
 
             Position = position;
 
-            Rotation = 0;
+            Rotation = MathF.PI / 4;
 
             EntityColor = Color;
 
@@ -27,7 +27,7 @@ namespace Roberto_WPF.GameScripts
 
             Vertices = new PointCollection();
 
-            SetShape(shape);
+            Vertices = GetRotatedVertices(shape);
         }
     }
 }

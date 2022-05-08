@@ -2,7 +2,8 @@
 using System.Numerics;
 
 namespace Roberto_WPF
-{
+{   
+    //This class is not implemented now
     public static class GeometryCalculation
     {
         public static bool IsInsideElipse(Vector2 centerPosition, Vector2 dimensions, Vector2 pointToTest)

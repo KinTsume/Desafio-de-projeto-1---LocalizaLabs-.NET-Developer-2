@@ -10,6 +10,10 @@ namespace Roberto_WPF.GameScripts
     {
         public Guid id { get; protected set; }
         public Vector2 Position { get; set; }
+
+        /// <summary>
+        /// The angle of rotation in radians
+        /// </summary>
         public float Rotation { get; set; }
         public ShapeEnum Shape { get; protected set; }
 
@@ -22,40 +26,26 @@ namespace Roberto_WPF.GameScripts
 
         public PointCollection Vertices 
         {
-            //This is needed because the vertices position are defined relative to the center of the object
-            //but canvas use absolute values to draw, so this get the relative values and change to absolute values
             get
             {
-                var verticesAux = new PointCollection();
-                for (int i = 0; i < _vertices.Count; i++)
-                {
-                    verticesAux.Add(new Point(_vertices[i].X + Position.X, _vertices[i].Y + Position.Y));
-                }
-
-                return verticesAux;
+                return _vertices;
             }
 
             protected set{ _vertices = value; }
         }
 
-        protected void SetShape(ShapeEnum s)
+        protected PointCollection GetRotatedVertices(ShapeEnum s)
         {
             switch (s)
             {
                 case ShapeEnum.Rectangle:
                     var angles = new float[4];
+                    var vertices = new PointCollection();
 
-                    //Since it's a rectangle it'll have 4 vertices
-                    //Removes exceeding points
-                    while (_vertices.Count > 4)
+                    //Add points
+                    while (vertices.Count < 4)
                     {
-                        _vertices.RemoveAt(_vertices.Count - 1);
-                    }
-
-                    //Adds missing points
-                    while (_vertices.Count < 4)
-                    {
-                        _vertices.Add(new Point(0, 0));
+                        vertices.Add(new Point(0, 0));
                     }
 
                     
@@ -82,19 +72,19 @@ namespace Roberto_WPF.GameScripts
 
                     for (int i = 0; i < 4; i++)
                     {
-                        _vertices[i] = (new Point(radius * MathF.Cos(angles[i] + Rotation), radius * MathF.Sin(angles[i] + Rotation)));
+                        vertices[i] = (new Point(radius * MathF.Cos(angles[i] + Rotation), radius * MathF.Sin(angles[i] + Rotation)));
                     }
 
-                    break;
+                    return vertices;
 
                 case ShapeEnum.Triangle:
-                    break;
+                    throw new NotImplementedException("Not available yet");
 
                 case ShapeEnum.Custom:
-                    break;
+                    throw new NotImplementedException("Not available yet"); 
 
                 default:
-                    break;
+                    throw new NotImplementedException("Not available yet");
             }
         }
     }

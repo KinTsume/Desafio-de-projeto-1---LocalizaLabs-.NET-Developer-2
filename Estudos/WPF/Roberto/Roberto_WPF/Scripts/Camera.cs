@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Shapes;
 using System.Windows.Media;
 using System.Windows;
+using Roberto_WPF.Utility;
 
 namespace Roberto_WPF.GameScripts
 {
@@ -34,6 +35,7 @@ namespace Roberto_WPF.GameScripts
             if (parent != null)
             {
                 this.Position = parent.Position;
+                this.Rotation = parent.Rotation - MathF.PI / 2;
             }
             
             renderStaticList(map, c);
@@ -43,21 +45,22 @@ namespace Roberto_WPF.GameScripts
         private void renderStaticList(Map map, Canvas c)
         {
             var SEntityList = map.GetStaticList();
+           
 
             foreach (StaticEntity item in SEntityList)
             {
                 var distance = new Vector2(Math.Abs(item.Position.X - this.Position.X), Math.Abs(item.Position.Y - this.Position.Y));
-                
-                //***********MAKE CAMERA RENDER RELATIVE TO ITS POSITION*********************
 
                 if (distance.X < (item.ShapeDimensions.X + this.ShapeDimensions.X) && distance.Y < (item.ShapeDimensions.Y + this.ShapeDimensions.Y))
                 {
+                    var rotationedVertices = getRotationVertices(item, this.Rotation, this.Position);
+
                     //calculate the vertices relative to the camera position
                     PointCollection relativeVertices = new PointCollection();
 
-                    foreach (Point point in item.Vertices)
+                    foreach (Point point in rotationedVertices)
                     {
-                        var pos = new Point(point.X - this.Position.X + this.ShapeDimensions.X / 2, point.Y  - this.Position.Y + this.ShapeDimensions.Y / 2);
+                        var pos = new Point(point.X + this.ShapeDimensions.X / 2, -point.Y + this.ShapeDimensions.Y / 2);
                         relativeVertices.Add(pos);
                     }
 
@@ -104,12 +107,14 @@ namespace Roberto_WPF.GameScripts
 
                 if (distance.X < (item.ShapeDimensions.X + this.ShapeDimensions.X) && distance.Y < (item.ShapeDimensions.Y + this.ShapeDimensions.Y))
                 {
+                    var rotationedVertices = getRotationVertices(item, this.Rotation, this.Position);
+
                     //calculate the vertices relative to the camera position
                     PointCollection relativeVertices = new PointCollection();
 
-                    foreach (Point point in item.Vertices)
+                    foreach (Point point in rotationedVertices)
                     {
-                        var pos = new Point(point.X - this.Position.X + this.ShapeDimensions.X / 2, point.Y - this.Position.Y + this.ShapeDimensions.Y / 2);
+                        var pos = new Point(point.X + this.ShapeDimensions.X / 2, -point.Y + this.ShapeDimensions.Y / 2);
                         relativeVertices.Add(pos);
                     }
 
@@ -137,6 +142,64 @@ namespace Roberto_WPF.GameScripts
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Get the object position relative to this camera
+        /// </summary>
+        /// <param name="entity">The entity to get the relative position</param>
+        /// <returns>A point representing the relative position</returns>
+        private Point getRelativePosition(Entity entity)
+        {
+            var x1 = this.Position;
+            var x2 = entity.Position;
+            var radius = Math.Sqrt(Math.Pow(x1.X - x2.X, 2)+ Math.Pow(x1.Y - x2.Y, 2));
+
+            //var distanceVector = new Point(Math.Abs(x1.X - x2.X), Math.Abs(x1.Y - x2.Y));
+
+            //var angle = radius != 0 ? Math.Acos(distanceVector.X / radius) : 0;
+            //var angleSignal = radius != 0 ? Math.Asin(distanceVector.Y / radius) : 1;
+            //angleSignal = angleSignal != 0 ? angleSignal / Math.Abs(angleSignal) : 1;
+            //angle *= angleSignal;
+
+            var angle = MathFunctions.AngleOfVector(x2, x1);
+
+            var angleBetween = angle - this.Rotation;
+
+            var position = new Point(radius * Math.Cos(angleBetween), radius * Math.Sin(angleBetween));
+
+            return position;
+        }
+
+        /// <summary>
+        /// Get the vertices of the entity with its rotation relative to this cames
+        /// </summary>
+        /// <param name="entity">The entity to get the vertices from</param>
+        /// <param name="rotation">The rotation of the camera</param>
+        /// <param name="pos">The position of the camera</param>
+        /// <returns>A collection with the vertices rotated and positioned relative to the camera</returns>
+        private PointCollection getRotationVertices(Entity entity, float rotation, Vector2 pos)
+        {
+            var relativePos = getRelativePosition(entity);
+            var angle = entity.Rotation - rotation;
+
+            var newVertices = new PointCollection();
+
+            foreach (Point p in entity.Vertices)
+            {
+                var radius = Math.Sqrt(Math.Pow(p.X, 2) + Math.Pow(p.Y, 2));
+                //var actualAngle = radius != 0 ? Math.Acos(p.X / radius) : 0;
+                //var angleSignal = radius != 0 ? Math.Asin(p.Y / radius) : 0;
+                //angleSignal = angleSignal != 0 ?  angleSignal / Math.Abs(angleSignal) : 1;
+                var actualAngle = MathFunctions.AngleOfVector(p, new Point(0, 0));
+
+                var rotatedVertex = new Point(radius * Math.Cos(angle + actualAngle), radius * Math.Sin(angle + actualAngle));
+                var camRelativeVertex = new Point(rotatedVertex.X + relativePos.X, rotatedVertex.Y + relativePos.Y);
+                newVertices.Add(camRelativeVertex);
+                //newVertices.Add(new Point(p.X + entity.Position.X, p.Y + entity.Position.Y));
+            }
+
+            return newVertices;
         }
     }
 }

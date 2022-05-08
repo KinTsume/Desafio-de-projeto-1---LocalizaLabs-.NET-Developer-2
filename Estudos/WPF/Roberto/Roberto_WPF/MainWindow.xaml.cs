@@ -50,8 +50,12 @@ namespace Roberto_WPF
             rect.Fill = Brushes.Yellow;
 
             CameraReference = new Camera(new Vector2((float)gameArea.Width, (float)gameArea.Height));
+
+            CameraReference.Rotation = MathF.PI / 4;
             MapReference = new Map();
             PlayerControllerReference = new PlayerController();
+
+            //CameraReference.Position = new Vector2(0, 100);
 
             var pos = new Vector2( 0, 0 );
             var shap = ShapeEnum.Rectangle;
@@ -62,9 +66,19 @@ namespace Roberto_WPF
             PlayerControllerReference.AttachObject(entity);
             CameraReference.parent = entity;
 
-            pos = new Vector2(0, 0);
+            pos = new Vector2(50, 50);
             shap = ShapeEnum.Rectangle;
             var entity2 = new StaticEntity(pos, shap, dim, Colors.Aquamarine);
+            MapReference.AddStatic(entity2);
+
+            pos = new Vector2(100, 33.3f);
+            shap = ShapeEnum.Rectangle;
+            entity2 = new StaticEntity(pos, shap, dim, Colors.Aquamarine);
+            MapReference.AddStatic(entity2);
+
+            pos = new Vector2(54, 150);
+            shap = ShapeEnum.Rectangle;
+            entity2 = new StaticEntity(pos, shap, dim, Colors.Aquamarine);
             MapReference.AddStatic(entity2);
 
             gameTimer = new DispatcherTimer(DispatcherPriority.Normal, Application.Current.Dispatcher);
@@ -91,6 +105,11 @@ namespace Roberto_WPF
         {
             UpdateCameraView();
             ControllerManager.OnKeyDown();
+
+            foreach (DynamicEntity de in MapReference.GetDynamicList())
+            {
+                de.checkCollision(MapReference);
+            }
         }
     }
 }

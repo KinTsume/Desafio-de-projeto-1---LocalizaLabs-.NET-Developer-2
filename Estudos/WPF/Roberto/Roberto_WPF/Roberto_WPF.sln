@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Roberto_WPF", "Roberto_WPF.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "roberto_test", "roberto_test\roberto_test.csproj", "{6700910E-46C2-48AB-A936-0D5D3EE80698}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RobertoTestProject", "..\RobertoTestProject\RobertoTestProject.csproj", "{72059A40-2B68-4843-9C20-E40459906525}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6700910E-46C2-48AB-A936-0D5D3EE80698}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6700910E-46C2-48AB-A936-0D5D3EE80698}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6700910E-46C2-48AB-A936-0D5D3EE80698}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72059A40-2B68-4843-9C20-E40459906525}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72059A40-2B68-4843-9C20-E40459906525}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72059A40-2B68-4843-9C20-E40459906525}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72059A40-2B68-4843-9C20-E40459906525}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

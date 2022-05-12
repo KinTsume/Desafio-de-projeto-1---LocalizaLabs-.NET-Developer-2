@@ -1,0 +1,20 @@
+body {
+    background-color: whitesmoke;
+}
+
+#canvas_div {
+    margin: auto;
+    width: min-content;
+    height: min-content;
+    border: 1px solid red;
+}
+
+#rotate_container{
+    display: flex;
+    margin: auto;
+    width: fit-content;
+}
+
+.rotation_label{
+    margin: 10px;
+}

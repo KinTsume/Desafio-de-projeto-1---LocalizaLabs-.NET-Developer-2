@@ -11,6 +11,12 @@ let start = () => {
     }, 100);
 
     let mat = MathFunction.matrixScale(MathFunction.matrixTest);
+    let result = MathFunction.solveTwoPlaneIntersection(mat);
+
+    let line = [[-100,-100,0], [100*result[0], 100*result[1], 100*result[2]]];
+    Draw.linesToDraw.push(line);
+
+
 }
 
 let loop = () => {
@@ -21,6 +27,7 @@ let loop = () => {
     Draw.callDrawAxis();
 
     Draw.drawAllPoints();
+    Draw.drawAllLines();
     Draw.drawAllMeshes();
 
     Draw.correctRotation();

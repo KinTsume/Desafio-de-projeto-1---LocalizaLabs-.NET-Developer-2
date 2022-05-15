@@ -14,7 +14,7 @@ export default class Mesh{
                 [5, -20, 20],
                 [5, -20, 100]
             ];
-            front.color = "blue";
+            front.color = 'rgba(255, 0, 0, 0.5)';
             this.faces.push(front);
 
             let back = new Face();
@@ -27,7 +27,7 @@ export default class Mesh{
                 [-5, -20, 20],
                 [-5, -20, 100]
             ];
-            back.color = "green";
+            back.color = 'rgba(0, 255, 0, 0.5)';
             this.faces.push(back);
 
             let top = new Face();

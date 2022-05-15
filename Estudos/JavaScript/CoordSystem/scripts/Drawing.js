@@ -14,6 +14,8 @@ export default class Drawing {
             [100, 100, 100]
         ];
 
+        this.linesToDraw= [];
+
         this.facesToDraw = [];
 
         this.meshesToDraw = [
@@ -33,6 +35,13 @@ export default class Drawing {
         this.pointsToDraw.forEach((item) => {
             let [x, y, z] = item;
             this.drawPoint(x, y, z);
+        });
+    }
+
+    drawAllLines(){
+        this.linesToDraw.forEach((item) => {
+            let [a, b] = item;
+            this.drawLine(a, b);
         });
     }
 
@@ -58,6 +67,16 @@ export default class Drawing {
         this.ctx.beginPath();
         this.ctx.arc(x, y, 5, 0, 2*Math.PI);
         this.ctx.fill();
+    }
+
+    drawLine(a, b){
+        let [cax, cay] = this.getCanvasCoord(a[0], a[1], a[2]);
+        let [cbx, cby] = this.getCanvasCoord(b[0], b[1], b[2]);
+        
+        this.ctx.beginPath();
+        this.ctx.moveTo(cax, cay);
+        this.ctx.lineTo(cbx, cby);
+        this.ctx.stroke();
     }
 
     drawFace(points, color){

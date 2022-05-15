@@ -2,8 +2,7 @@ export default class MathFunc{
     constructor(){
         this.matrixTest = [
             [4, 2, 5, 0],
-            [-3, 1, 2, 0],
-            [3, 2, 4, 0]
+            [-3, 1, 2, 0]
         ];
     }
 
@@ -31,8 +30,6 @@ export default class MathFunc{
 
     handleLineMultiplying(pivotLine, line, pivotColumn){
 
-        console.log("Pivot: "+pivotLine);
-        console.log("Line: "+line);
         let multiplier = pivotLine[pivotColumn] != 0 ? (line[pivotColumn] / pivotLine[pivotColumn]) : 0;
         let resultLine = [];
         for(let i = 0; i < line.length; i++){
@@ -43,7 +40,18 @@ export default class MathFunc{
         return resultLine;
     }
 
-    solveScaledMatrix = () => {
-        
+    solveTwoPlaneIntersection = (scaledMatrix) => {
+        //The y is arbitrary
+        let arr = [0, 1, 0];
+        let matrixVLength = scaledMatrix.length;
+
+        let currentLine = scaledMatrix[1];
+
+        arr[2] = (currentLine[3] - currentLine[1] * arr[1]) / currentLine[2]; 
+
+        currentLine = scaledMatrix[0];
+        arr[0] = (currentLine[3] - currentLine[2] * arr[2] - currentLine[1] * arr[1]) / currentLine[0];
+
+        return arr;
     }
 }

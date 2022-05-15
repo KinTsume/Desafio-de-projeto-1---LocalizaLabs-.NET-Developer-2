@@ -1,7 +1,0 @@
-let matrixScale = () => {
-
-}
-
-let solveScaledMatrix = () => {
-    
-}
